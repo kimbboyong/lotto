@@ -23,6 +23,7 @@
         border-radius: 12px;
         background: #fff;
         box-shadow: 3px 2px 12px rgba(0, 0, 0, 0.3);
+        text-align: center;
     }
 
     button {
@@ -50,32 +51,40 @@
 <body>
     <div class="wrap">
         <h2>당첨되면 당첨금의 10프로 주셈</h2>
-        <p id="result"></p>
-        <button onclick="generateLottoNumbers()">로또 번호 생성</button>
+        <div class="content">
+            <h3>로또임</h3>
+            <p id="result"></p>
+            <button onclick="generateLottoNumbers()">로또 번호 생성</button>
+        </div>
+        <div class="content">
+            <h3>연금복권임</h3>
+            <p id="result2"></p>
+            <button onclick="generateRandomNumbers()">로또 번호 생성</button>
+        </div>
     </div>
 
     <script>
         const result = document.getElementById('result');
+        const result2 = document.getElementById('result2');
 
         function generateLottoNumbers() {
-            // 1에서 45까지의 숫자 배열 생성
             let numbers = Array.from({ length: 45 }, (_, index) => index + 1);
 
-            // 배열을 섞기 (Fisher-Yates 알고리즘 사용)
             for (let i = numbers.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
             }
 
-            // 배열에서 처음 6개의 요소 선택
             const selectedNumbers = numbers.slice(0, 6);
 
-            // 오름차순으로 정렬
             selectedNumbers.sort((a, b) => a - b);
 
-            // 결과 출력 또는 다른 동작 수행
             result.innerHTML = selectedNumbers.join(', ');
-            // alert("선택된 로또 번호: " + selectedNumbers.join(', '));
+        }
+
+        function generateRandomNumbers() {
+            const randomNumbers = Array.from({ length: 6 }, () => Math.floor(Math.random() * 10));
+            result2.innerHTML = randomNumbers.join(', ');
         }
     </script>
 
