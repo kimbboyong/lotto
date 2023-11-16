@@ -48,6 +48,30 @@
         font-size: 20px;
     }
 
+    strong {
+        margin-top: 50px;
+    }
+
+    #copy {
+        color: blue;
+        font-weight: bold;
+        cursor: pointer;
+        position: relative;
+    }
+
+    #copy:hover::after {
+        content: "클릭하면 복사댐 ㅋ";
+        display: block;
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        color: #f00;
+    }
+
+
+
     @media screen and (max-width: 600px) {
         .wrap {
             border-radius: 0;
@@ -56,6 +80,7 @@
 </style>
 
 <body>
+
     <div class="wrap">
         <h2>당첨되면 당첨금의 10프로 주셈</h2>
         <div class="content">
@@ -68,6 +93,9 @@
             <p id="result2"></p>
             <button onclick="generateRandomNumbers()">로또 번호 생성</button>
         </div>
+
+        <strong>국민 - <span id="copy" onclick="copyText()">313502 04 118072</span> 김준혁</strong>
+
     </div>
 
     <script>
@@ -92,6 +120,30 @@
         function generateRandomNumbers() {
             const randomNumbers = Array.from({ length: 6 }, () => Math.floor(Math.random() * 10));
             result2.innerHTML = randomNumbers.join(', ');
+        }
+
+        function copyText() {
+            const copyText = document.getElementById("copy").innerText;
+
+            // Create a temporary input element
+            const tempInput = document.createElement("input");
+            tempInput.value = copyText;
+
+            // Append the input element to the document
+            document.body.appendChild(tempInput);
+
+            // Select the text in the input element
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); /* For mobile devices */
+
+            // Copy the text to the clipboard
+            document.execCommand("copy");
+
+            // Remove the temporary input element
+            document.body.removeChild(tempInput);
+
+            // Alert or notify the user that the text has been copied
+            alert("ㅊㅋ 바로 복붙하셈 ");
         }
     </script>
 
