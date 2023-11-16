@@ -14,7 +14,8 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 500px;
+        width: 100%;
+        max-width: 500px;
         height: 500px;
         display: flex;
         flex-direction: column;
@@ -45,6 +46,12 @@
 
     p {
         font-size: 20px;
+    }
+
+    @media screen and (max-width: 600px) {
+        .wrap {
+            border-radius: 0;
+        }
     }
 </style>
 
