@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .wrap {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 500px;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 3px 2px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    button {
+        border: none;
+        background: #fff;
+        color: #000;
+        font-weight: bold;
+        box-shadow: 3px 2px 12px rgba(0, 0, 0, 0.3);
+        padding: 10px 20px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all .4s;
+    }
+
+    button:hover {
+        background: #000;
+        color: #fff;
+    }
+
+    p {
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <div class="wrap">
+        <h2>당첨되면 당첨금의 10프로 주셈</h2>
+        <p id="result"></p>
+        <button onclick="generateLottoNumbers()">로또 번호 생성</button>
+    </div>
+
+    <script>
+        const result = document.getElementById('result');
+
+        function generateLottoNumbers() {
+            // 1에서 45까지의 숫자 배열 생성
+            let numbers = Array.from({ length: 45 }, (_, index) => index + 1);
+
+            // 배열을 섞기 (Fisher-Yates 알고리즘 사용)
+            for (let i = numbers.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+            }
+
+            // 배열에서 처음 6개의 요소 선택
+            const selectedNumbers = numbers.slice(0, 6);
+
+            // 오름차순으로 정렬
+            selectedNumbers.sort((a, b) => a - b);
+
+            // 결과 출력 또는 다른 동작 수행
+            result.innerHTML = selectedNumbers.join(', ');
+            // alert("선택된 로또 번호: " + selectedNumbers.join(', '));
+        }
+    </script>
+
+</body>
+
+</html>
