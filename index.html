@@ -125,24 +125,18 @@
         function copyText() {
             const copyText = document.getElementById("copy").innerText;
 
-            // Create a temporary input element
             const tempInput = document.createElement("input");
             tempInput.value = copyText;
 
-            // Append the input element to the document
             document.body.appendChild(tempInput);
 
-            // Select the text in the input element
             tempInput.select();
-            tempInput.setSelectionRange(0, 99999); /* For mobile devices */
+            tempInput.setSelectionRange(0, 99999);
 
-            // Copy the text to the clipboard
             document.execCommand("copy");
 
-            // Remove the temporary input element
             document.body.removeChild(tempInput);
 
-            // Alert or notify the user that the text has been copied
             alert("ㅊㅋ 바로 복붙하셈 ");
         }
     </script>
